@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.png">
+    <title>IMDB Top Movies</title>
+    <style>
+
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 10px 180px;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 15px 30px;
+        }
+
+        .header {
+            width: auto;
+            height: 60px;
+            background-color: goldenrod;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            padding: 0 180px;
+        }
+
+        .header-wrapper {
+            padding-left: 100px;
+            padding-right: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .header-wrapper p {
+            font-family: sans-serif;
+            font-size: 48px;
+            font-weight: bolder;
+            text-wrap: none;
+            text-transform: uppercase;
+            color: #333333;
+            margin: 0;
+        }
+
+        .cover {
+            height: 480px;
+            border: 5px solid #333333;
+            border-radius: 4px;
+            object-fit: contain;
+        }
+
+        .cover:hover {
+            transition: 0.5s;
+            border-color: goldenrod;
+            opacity: 60%;
+        }
+
+        .movie-title, .movie-year {
+            text-decoration: none;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .movie-year {
+            color: #333333;
+        }
+
+        .movie-title:hover {
+            transition: 0.5s;
+            color: goldenrod;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header"
+         style="background-color: #333333; justify-content: flex-start">
+        <a href="/">
+            <img src="/static/logo.png"
+                 alt="imdb-logo"
+                 style="object-fit: contain; height: 30px">
+        </a>
+    </div>
+    <div class="header">
+        <div class="header-wrapper">
+            <p>IMDB Top Movies</p>
+        </div>
+    </div>
+    <div class="row">
+        {% for movie in content %}
+            <div class="wrapper">
+                <a href="/movies/{{ movie[0] }}">
+                    <img class="cover"
+                         src="{{ movie[3] }}"
+                         alt="{{ movie[1] }}">
+                </a>
+                <div class="movie-bottom" style="margin: 10px 5px">
+                    <a href="/movies/{{ movie[0] }}"
+                       class="movie-title">
+                        {{ movie[1] }}
+                    </a>
+                    <div class="movie-year">{{ movie[2] }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
